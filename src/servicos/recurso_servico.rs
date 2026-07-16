@@ -2,6 +2,7 @@
 use rocket::futures::future::ok;
 
 use crate::models::recurso::Recurso;
+use crate::dtos::recurso_dto::RecursoDto;
 
 pub fn lista_de_recursos() -> Vec<Recurso> {
 
@@ -21,14 +22,14 @@ pub fn lista_de_recursos() -> Vec<Recurso> {
 }
 
 
-pub fn cadastrar_recurso(recurso: Recurso) -> Result<(), String> {
+pub fn cadastrar_recurso(recurso_dto: RecursoDto) -> Result<Recurso, String> {
     // Lógica para cadastrar o recurso no banco de dados
-    println!("Id: {}", recurso.id);
-    println!("Título: {}", recurso.titulo);
-    println!("Descrição: {}", recurso.descricao);
+
+    println!("Título: {}", recurso_dto.titulo);
+    println!("Descrição: {}", recurso_dto.descricao);
 
     if true {
-        Ok(())
+        Ok( Recurso {id: 1, titulo: recurso_dto.titulo, descricao: recurso_dto.descricao} )
     } else {
         Err("Erro ao cadastrar recurso".to_string())
     }

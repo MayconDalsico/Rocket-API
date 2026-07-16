@@ -11,8 +11,13 @@ pub fn index() -> Json<Vec<Recurso>> {
 
 
 #[post("/recursos", data = "<recurso_dto>")]
-pub fn criar(recurso_dto: Json<RecursoDto>) -> Json<Vec<Recurso>> {
-    let recurso = recurso_dto.into_inner();
-    let recursos = recurso_servico::lista_de_recursos();
-    Json(recursos)
+pub fn criar(recurso_dto_: Json<RecursoDto>) -> Json<Vec<Recurso>> {
+    let recurso_dto_obj = recurso_dto.into_inner();
+    match recurso_servico::cadastrar_recurso(recurso){
+        Ok(recurso)
+        Json(recurso)
+    }else{
+
+    }
+
 }
